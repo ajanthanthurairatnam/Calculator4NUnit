@@ -25,8 +25,7 @@ namespace Calculator4NUnit
 
         public object DivideTwoNumbers(int number1, int number2)
         {
-            var output = (number1 / number2);
-            return output;
+            return (number1 / number2);
         }
     }
 }
