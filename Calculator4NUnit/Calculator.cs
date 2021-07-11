@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator4NUnit
 {
-    public class Calculator
+    public class Calculator : ICalculator
     {
         public int AddTwoNumbers(int number1, int number2)
         {
@@ -18,12 +18,12 @@ namespace Calculator4NUnit
             return number1 - number2;
         }
 
-        public object MultiplyTwoNumbers(int number1, int number2)
+        public int MultiplyTwoNumbers(int number1, int number2)
         {
             return number1 * number2;
         }
 
-        public object DivideTwoNumbers(int number1, int number2)
+        public int DivideTwoNumbers(int number1, int number2)
         {
             return (number1 / number2);
         }

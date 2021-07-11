@@ -1,10 +1,6 @@
 ﻿using Calculator4NUnit;
+using NSubstitute;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Test
 {
@@ -12,9 +8,11 @@ namespace Test
     public class CalculatorTests
     {
         Calculator sut;
+        ICalculator calculator;
         public CalculatorTests()
         {
            sut = new Calculator();
+            calculator = Substitute.For<ICalculator>();
         }
 
         [Test]
@@ -24,13 +22,13 @@ namespace Test
             int number1 = 1;
             int number2 = 2;
 
-            int resultNumber = 3;
+            calculator.AddTwoNumbers(number1,number2).Returns(3);
 
             //Act
             int outputNumbers = sut.AddTwoNumbers(number1, number2);
 
             //Assert
-            Assert.AreEqual(resultNumber, outputNumbers);
+            Assert.AreEqual(calculator.AddTwoNumbers(number1, number2), outputNumbers);
         }
 
         [Test]
@@ -41,6 +39,8 @@ namespace Test
             int number2 = 3;
 
             int resultNumber = 2;
+            calculator.SubstractTwoNumbers(number1, number2).Returns(8);
+
 
             //Act
             var outputNumber = sut.SubstractTwoNumbers(number1, number2);
@@ -55,12 +55,12 @@ namespace Test
             int number1 = 5;
             int number2 = 3;
 
-            int resultNumber = 15;
+            calculator.MultiplyTwoNumbers(number1, number2).Returns(15);
 
             //Act
             var outputNumber = sut.MultiplyTwoNumbers(number1, number2);
 
-            Assert.AreEqual(resultNumber, outputNumber);
+            Assert.AreEqual(calculator.MultiplyTwoNumbers(number1, number2), outputNumber);
         }
 
         [Test]
@@ -74,6 +74,7 @@ namespace Test
 
             //Act
             var outputNumber = sut.DivideTwoNumbers(number1, number2);
+            calculator.DivideTwoNumbers(number1, number2).Returns(3);
 
             Assert.AreEqual(resultNumber, outputNumber);
         }
